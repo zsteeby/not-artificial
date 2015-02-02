@@ -22,7 +22,7 @@ var map = L.mapbox.map('map', 'crowe-ridley.l3agb24d')
 
 //add Royals game data	
 var sourceData = L.mapbox.featureLayer()
-  .loadURL('royals.geojson');
+  .loadURL('royals.geojson')
   .addTo(map);
 var stateData = L.mapbox.featureLayer()
   .loadURL('states.geojson')
