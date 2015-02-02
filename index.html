@@ -38,7 +38,12 @@ map.featureLayer.on('ready', function() {
     var awayGames = turf.filter(map.featureLayer.getGeoJSON(sourceData), key, value);
     L.mapbox.featureLayer(awayGames).addTo(map);
 });
-
+awayGames.on('mouseover', function(e) {
+    e.layer.openPopup();
+});
+awayGames.on('mouseout', function(e) {
+    e.layer.closePopup();
+});
 </script>
 </body>
 </html>
