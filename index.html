@@ -23,7 +23,7 @@ var map = L.mapbox.map('map', 'crowe-ridley.l3agb24d')
 //add Royals game data	
 var sourceData = L.mapbox.featureLayer()
   .loadURL('royals.geojson');
-  //.addTo(map);
+  .addTo(map);
 var stateData = L.mapbox.featureLayer()
   .loadURL('states.geojson')
   .addTo(map);  
@@ -36,12 +36,12 @@ map.featureLayer.on('ready', function() {
     var key = 'location';
     var value = 'Away';
     var awayGames = turf.filter(map.featureLayer.getGeoJSON(sourceData), key, value);
-    //L.mapbox.featureLayer(awayGames).addTo(map);
+    sourceData.setGeoJSON(awayGames);
 });
-awayGames.on('mouseover', function(e) {
+sourceData.on('mouseover', function(e) {
     e.layer.openPopup();
 });
-awayGames.on('mouseout', function(e) {
+sourceData.on('mouseout', function(e) {
     e.layer.closePopup();
 });
 </script>
