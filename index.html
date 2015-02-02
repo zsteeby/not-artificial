@@ -36,7 +36,7 @@ map.featureLayer.on('ready', function() {
     var key = 'location';
     var value = 'Away';
     var awayGames = turf.filter(fc, key, value);
-    sourceData.setGeoJSON(awayGames);
+    sourceData.setGeoJSON(fc);
 });
 sourceData.on('mouseover', function(e) {
     e.layer.openPopup();
