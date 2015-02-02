@@ -5,6 +5,7 @@
 <title>not-artificial</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v1.3.0/turf.min.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
 <style>
   body { margin:0; padding:0; }
@@ -15,13 +16,25 @@
 <div id='map'></div>
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoiY3Jvd2UtcmlkbGV5IiwiYSI6ImpjTGdpUW8ifQ.m5WtjYTE8_lH8wYrIlL9PQ';
-var map = L.mapbox.map('map', 'crowe-ridley.l3agb24d');
-    //.setView([39.398, -94.79], 9);
-
 //add Royals game data	
- var featureLayer = L.mapbox.featureLayer()
-  .loadURL('royals.geojson')
-  .addTo(map);	
+var sourceData = L.mapbox.featureLayer()
+  .loadURL('royals.geojson');
+  //.addTo(map);	
+ 
+//create turf feature collection
+//var fc = turf.featurecollection(sourceData);
+
+//filter feature collection
+
+var key = 'location';
+var value = 'Away';
+var awayGames = turf.filter(sourceData, key, value);
+
+var map = L.mapbox.map('map', 'crowe-ridley.l3agb24d')
+    .setView([39.538, -97.339], 5);
+	
+L.mapbox.featureLayer().setGeoJSON(awayGames).addTo(map);
+
 </script>
 </body>
 </html>
