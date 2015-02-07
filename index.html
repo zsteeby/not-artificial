@@ -26,11 +26,11 @@ var sourceData = L.mapbox.featureLayer()
   .addTo(map);	
  
 //create turf feature collection
-var fc = turf.featurecollection(sourceData);
+var fc = sourceData.getGeoJSON();
 
 //filter feature collection
-var key = "location";
-var value = "Away";
+var key = 'location';
+var value = 'Away';
 var awayGames = turf.filter(fc, key, value);
 	
 L.mapbox.featureLayer().setGeoJSON(awayGames).addTo(map);
