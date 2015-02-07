@@ -29,8 +29,8 @@ var sourceData = L.mapbox.featureLayer()
 var fc = turf.featurecollection(sourceData);
 
 //filter feature collection
-var key = 'location';
-var value = 'Away';
+var key = "location";
+var value = "Away";
 var awayGames = turf.filter(fc, key, value);
 	
 L.mapbox.featureLayer().setGeoJSON(awayGames).addTo(map);
