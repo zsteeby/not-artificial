@@ -28,8 +28,8 @@ var stateData = L.mapbox.featureLayer()
   .loadURL('states.geojson')
   .addTo(map);  
  
-//create turf feature collection
-var fc = turf.featurecollection(sourceData);
+//feature collection
+var fc = sourceData.getGeoJSON();
 
 //filter feature collection
 map.featureLayer.on('ready', function() {
