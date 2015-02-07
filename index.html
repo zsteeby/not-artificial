@@ -35,7 +35,7 @@ var fc = sourceData.getGeoJSON();
 var key = "location";
 var value = "Away";
 var awayGames = turf.filter(fc, key, value);
-sourceData.setGeoJSON(awayGames);
+sourceData.setGeoJSON(awayGames).addTo(map);
 
 sourceData.on('mouseover', function(e) {
     e.layer.openPopup();
