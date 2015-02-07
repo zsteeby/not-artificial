@@ -33,8 +33,8 @@ var fc = turf.featurecollection(sourceData);
 
 //filter feature collection
 map.featureLayer.on('ready', function() {
-    var key = 'location';
-    var value = 'Away';
+    var key = "location";
+    var value = "Away";
     var awayGames = turf.filter(fc, key, value);
     sourceData.setGeoJSON(awayGames);
 });
