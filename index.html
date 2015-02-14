@@ -34,6 +34,11 @@ var awayGames = turf.filter(sourceData, key, value);
 var filter = L.mapbox.featureLayer(awayGames)
   .addTo(map);
 
+// Bind a popup to each feature
+  filter.eachLayer(function (layer) {
+    layer.bindPopup('<strong>' + layer.feature.properties.Stadium + '</strong>', { closeButton: false });
+  }).addTo(map);
+
 filter.on('mouseover', function(e) {
     e.layer.openPopup();
 });
