@@ -35,12 +35,13 @@ var fc = sourceData.getGeoJSON();
 var key = "location";
 var value = "Away";
 var awayGames = turf.filter(fc, key, value);
-sourceData.setGeoJSON(awayGames).addTo(map);
+var filter = L.mapbox.featureLayer(awayGames)
+  .addTo(map);
 
-sourceData.on('mouseover', function(e) {
+filter.on('mouseover', function(e) {
     e.layer.openPopup();
 });
-sourceData.on('mouseout', function(e) {
+filter.on('mouseout', function(e) {
     e.layer.closePopup();
 });
 </script>
