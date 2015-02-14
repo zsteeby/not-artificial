@@ -4307,7 +4307,7 @@ var key = "location";
 var value = "Away";
 var awayGames = turf.filter(sourceData, key, value);
 var filter = L.mapbox.featureLayer(awayGames)
-  .addTo(map);
+  //.addTo(map);
 
 // Bind a popup to each feature
 filter.eachLayer(function (layer) {
@@ -4319,6 +4319,26 @@ filter.on('mouseover', function(e) {
 });
 filter.on('mouseout', function(e) {
     e.layer.closePopup();
+});
+filter.on('ready', function(e) {
+    // The clusterGroup gets each marker in the group added to it
+    // once loaded, and then is added to the map
+    var clusterGroup = new L.MarkerClusterGroup({
+      // The iconCreateFunction takes the cluster as an argument and returns
+      // an icon that represents it. We use L.mapbox.marker.icon in this
+      // example, but you could also use L.icon or L.divIcon.
+      iconCreateFunction: function(cluster) {
+        return L.mapbox.marker.icon({
+          // show the number of markers in the cluster on the icon.
+          'marker-symbol': cluster.getChildCount(),
+          'marker-color': '#422'
+        });
+      }
+    });
+    e.target.eachLayer(function(layer) {
+        clusterGroup.addLayer(layer);
+    });
+    map.addLayer(clusterGroup);
 });
 </script>
 </body>
